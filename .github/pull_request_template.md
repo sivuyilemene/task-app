@@ -1,8 +1,7 @@
-## Description
+# Description
 <!-- Describe what this PR does and why it is needed -->
 <!-- Eg. This PR adds a portfolio section to the website. The portfolio section displays all the software projects I have worked on, including project titles, descriptions, and links to their respective repositories or live demos.
  -->
-
 
 ## Changes Made
 <!-- List your changes in brief -->
