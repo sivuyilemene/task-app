@@ -135,6 +135,6 @@ const Configuration = {
       },
     },
   },
-};
+}
 
-export default Configuration;
+export default Configuration
