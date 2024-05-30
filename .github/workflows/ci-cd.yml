@@ -44,7 +44,7 @@ jobs:
             
                 
             - name: build and push
-              uses: docker.build-push-action@v5
-              with: 
+              uses: docker/build-push-action@v5
+              with:
                 push: true
                 tags: sivuyilemene/task-app:latest
