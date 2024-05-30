@@ -1,6 +1,6 @@
 name: CI-CD
 on: 
-  push:
+  pull_request:
       branches:  main
 jobs: 
    # Build Job
@@ -15,6 +15,7 @@ jobs:
               uses: actions/setup-node@v4
               with:
                 node-version: 18.x
+
             # Install dependencies and build
             - name: Install Dependencies
               run: npm install
