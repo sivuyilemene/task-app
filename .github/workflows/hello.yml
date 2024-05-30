@@ -1,0 +1,10 @@
+name: Hello world
+on: 
+  pull_request:
+      branches:  main
+jobs: 
+    hello: 
+        runs-on: ubuntu-latest
+        steps: 
+            - name: Say Hello to my little friend
+              run: echo "BOOM!"
