@@ -22,7 +22,7 @@ function App() {
 
   return (
     <div className="App">
-      <h1>Task App</h1>
+      <h1>Task App.</h1>
       <TaskInput addTask={addTask} />
       <TaskList tasks={tasks} toggleTaskCompletion={toggleTaskCompletion} />
     </div>
