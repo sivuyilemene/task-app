@@ -1,4 +1,5 @@
 # React Task App
+[![CI-CD](https://github.com/sivuyilemene/task-app/actions/workflows/ci-cd.yml/badge.svg)](https://github.com/sivuyilemene/task-app/actions/workflows/ci-cd.yml)
 
 A simple task app built with React that allows users to create tasks. This project was created to learn how to build a CI pipeline.
 
