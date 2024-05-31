@@ -14,6 +14,7 @@ function TaskInput({ addTask }) {
   return (
     <form onSubmit={handleSubmit}>
       <input
+        id="form"
         type="text"
         value={task}
         onChange={(e) => setTask(e.target.value)}
