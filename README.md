@@ -42,6 +42,7 @@ To get a local copy up and running follow these simple steps.
 Open http://localhost:8080 to view it in the browser.
 
 ## CI Pipeline
+![CI Pipeline](pipeline.png)
 
 The project uses a Continuous Integration (CI) pipeline with the following stages:
 
