@@ -57,7 +57,7 @@ The project uses a Continuous Integration (CI) pipeline with the following stage
 - Run unit tests: Placeholder (not implemented).
 - Check code coverage: Placeholder (not implemented).
 ### Test Stage
-- Run integration tests: Ensures the app works as expected end-to-end.
+- Run integration tests: Ensures the app works as expected end-to-end. (not implemented)
 ### Release Stage
 - Builds Docker image: Packages the app into a Docker image.
 - Tags and pushes Docker image: Publishes the Docker image to Docker Hub.
