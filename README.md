@@ -28,7 +28,7 @@ To get a local copy up and running follow these simple steps.
 
 1. Clone the repo
    ```sh
-   git clone https://github.com/yourusername/react-task-app.git
+   git clone https://github.com/sivuyilemene/task-app.git
    ```
 2. Install NPM packages
     ```sh
@@ -72,3 +72,4 @@ docker pull sivuyilemene/task-app:latest
 ```sh
 docker run -p 8080:8080 docker.io/sivuyilemene/task-app:latest
 ```
+Open http://localhost:8080 to view it in the browser.
