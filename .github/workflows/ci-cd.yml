@@ -1,10 +1,5 @@
 name: CI-CD
 
-env: 
-  IMAGE_TAGS: latest, ${{github.sha}}
-  TEST_TAGS: latest, ${{github.sha}}
-
-
 on:
   push:
     branches: main
@@ -69,14 +64,8 @@ jobs:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
           
-      - name: Build Test image
-        uses: docker/build-push-action@v5
-        with:
-          load: true
-          tags: ${{ env.TEST_TAG }}
-          
       - name: build and push
         uses: docker/build-push-action@v5
         with:
           push: true
-          tags: ${{env.IMAGE_TAGS}}
+          tags: sivuyilemene/task-app:latest, sivuyilemene/task-app:${{ github.sha }}
