@@ -1,8 +1,8 @@
 name: CI-CD
 
 env: 
-  IMAGE_TAGS: latest,${{github.sha}}
-  TEST_TAGS: latest,${{github.sha}}
+  IMAGE_TAGS: latest, ${{github.sha}}
+  TEST_TAGS: latest, ${{github.sha}}
 
 
 on:
