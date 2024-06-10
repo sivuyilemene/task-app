@@ -1,7 +1,8 @@
 name: CI-CD
 
 env: 
-  IMAGE_TAGS: latest ${{github.sha}}
+  IMAGE_TAGS: latest,${{github.sha}}
+  TEST_TAGS: latest,${{github.sha}}
 
 
 on:
@@ -67,7 +68,18 @@ jobs:
         with:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
-
+          
+      - name: Build Test image
+        uses: docker/build-push-action@v5
+        with:
+          context: .
+          load: true
+          tags: ${{ env.TEST_TAG }}
+      
+      - name: Test built image
+        run: |
+          docker run --rm ${{ env.TEST_TAGS }}    
+          
       - name: build and push
         uses: docker/build-push-action@v5
         with:
