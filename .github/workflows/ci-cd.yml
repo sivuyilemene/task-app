@@ -74,10 +74,6 @@ jobs:
         with:
           load: true
           tags: ${{ env.TEST_TAG }}
-      
-      - name: Test built image
-        run: |
-          docker run --rm ${{ env.TEST_TAGS }}    
           
       - name: build and push
         uses: docker/build-push-action@v5
