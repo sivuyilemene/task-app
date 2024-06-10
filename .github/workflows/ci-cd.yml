@@ -52,14 +52,7 @@ jobs:
     runs-on: ubuntu-latest
     needs: test
     steps:
-      - name: Set short git commit SHA
-        id: vars
-        run: |
-          calculatedSha=$(git rev-parse --short ${{ github.sha }})
-          echo "COMMIT_SHORT_SHA=$calculatedSha" >> $GITHUB_ENV
-    
-      - name: Confirm git commit SHA output
-        run: echo ${{ env.COMMIT_SHORT_SHA }}
+     
 
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v3
@@ -72,7 +65,16 @@ jobs:
         with:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
-          
+
+      - name: Set short git commit SHA
+        id: short-sha
+        run: |
+          calculatedSha=$(git rev-parse --short ${{ github.sha }})
+          echo "COMMIT_SHORT_SHA=$calculatedSha" >> $GITHUB_ENV
+    
+      - name: Confirm git commit SHA output
+        run: echo ${{ env.COMMIT_SHORT_SHA }}
+        
       - name: Build and Push Docker Image
         uses: docker/build-push-action@v5
         with:
