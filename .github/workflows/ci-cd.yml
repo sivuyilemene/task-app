@@ -32,23 +32,26 @@ jobs:
         with:
           name: production-files
           path: ./dist
+
   test:
     runs-on: ubuntu-latest
     needs: build
 
     steps:
       - uses: actions/checkout@v4
+      # Setup Node and install dependeices
       - name: "Install Node"
         uses: actions/setup-node@v4
         with:
           node-version: "18.x"
       - name: "Install Deps"
         run: npm install
+
+        # Test code
       - name: "Test"
         run: npm run coverage
 
-
-  release:
+  deploy-to-docker-hub:
     runs-on: ubuntu-latest
     needs: test
     steps:
@@ -72,12 +75,54 @@ jobs:
         run: |
           calculatedSha=$(git rev-parse --short ${{ github.sha }})
           echo "COMMIT_SHORT_SHA=$calculatedSha" >> $GITHUB_ENV
-    
+
       - name: Confirm git commit SHA output
         run: echo ${{ env.COMMIT_SHORT_SHA }}
-        
+
       - name: Build and Push Docker Image
         uses: docker/build-push-action@v5
         with:
           push: true
           tags: sivuyilemene/task-app:latest, sivuyilemene/task-app:${{ env.COMMIT_SHORT_SHA }}
+
+  deploy-to-ecr:
+    runs-on: ubtuntu-latest
+    needs: test
+    steps:
+      #  Checkout code
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      # Configure AWS Credentials
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: us-east-2
+  
+      # Login to ECR
+      - name: Amazon ECR "Login"
+        id: login-ecr
+        uses: aws-actions/amazon-ecr-login@v2
+        
+      #  Create a shortend commit sha
+      - name: Set short git commit SHA
+        id: short-sha
+        run: |
+          calculatedSha=$(git rev-parse --short ${{ github.sha }})
+          echo "COMMIT_SHORT_SHA=$calculatedSha" >> $GITHUB_ENV
+
+      - name: Confirm git commit SHA output
+        run: echo ${{ env.COMMIT_SHORT_SHA }}
+
+      # Build, tag and push image to ECR
+      - name: Build, tag, and push docker image to Amazon ECR
+        env:
+          REGISTRY: ${{ steps.login-ecr.outputs.registry }}
+          REPOSITORY: my-ecr-repo
+          IMAGE_TAG: ${{ env.COMMIT_SHORT_SHA }}
+        run: |
+          docker build -t $REGISTRY/$REPOSITORY:$IMAGE_TAG $REGISTRY/$REPOSITORY:latest .
+          docker push $REGISTRY/$REPOSITORY:$IMAGE_TAG $REGISTRY/$REPOSITORY:latest
+   
