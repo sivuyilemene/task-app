@@ -84,7 +84,7 @@ The project uses a Continuous Integration (CI) pipeline with the following stage
 ### Release Stage
 
 - Builds Docker image: Packages the app into a Docker image.
-- Tags and pushes Docker image: Publishes the Docker image to Docker Hub.
+- Tags and pushes Docker image: Publishes the Docker image to Docker Hub and Amazon ECR.
 
 ## Docker
 
