@@ -123,6 +123,7 @@ jobs:
           REPOSITORY: my-ecr-repo
           IMAGE_TAG: ${{ env.COMMIT_SHORT_SHA }}
         run: |
-          docker build -t $REGISTRY/$REPOSITORY:$IMAGE_TAG $REGISTRY/$REPOSITORY:latest .
-          docker push $REGISTRY/$REPOSITORY:$IMAGE_TAG $REGISTRY/$REPOSITORY:latest
-   
+          docker build -t $REGISTRY/$REPOSITORY:$IMAGE_TAG .
+          docker build -t  $REGISTRY/$REPOSITORY:latest .
+          docker push $REGISTRY/$REPOSITORY:$IMAGE_TAG
+          docker push $REGISTRY/$REPOSITORY:latest
