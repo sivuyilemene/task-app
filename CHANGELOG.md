@@ -1,4 +1,11 @@
-## 0.1.0 (2024-11-28)
+## [0.1.1](https://github.com/sivuyilemene/task-app/compare/v0.1.0...v0.1.1) (2024-11-28)
+
+
+### Reverts
+
+* Revert "Update issue templates" ([e06d456](https://github.com/sivuyilemene/task-app/commit/e06d456cd937bdd587730d6e71b1877632bb39c8))
+
+## [0.1.0](https://github.com/sivuyilemene/task-app/compare/d3950c780ca3ea5d3f1c46635b378bd5cc85e7d3...v0.1.0) (2024-11-28)
 
 
 ### Features
