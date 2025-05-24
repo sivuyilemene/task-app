@@ -1,2 +1,2 @@
-npx lint-staged
-npx vitest run
+cd frontend && npx lint-staged && npx vitest run
+cd ../backend && npx lint-staged
