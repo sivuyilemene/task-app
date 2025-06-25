@@ -3,7 +3,7 @@ import react from '@vitejs/plugin-react'
 console.log('Loaded vitest config');
 // https://vitejs.dev/config/
 export default defineConfig({
- base: "/",
+ base: "/frontend",
  plugins: [react()],
  preview: {
   port: 8080,
