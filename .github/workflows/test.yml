@@ -29,3 +29,5 @@ jobs:
         # See: https://github.com/davelosert/vitest-coverage-report-action#reportonfailure
         if: always()
         uses: davelosert/vitest-coverage-report-action@v2
+        with:
+          working-directory: frontend
