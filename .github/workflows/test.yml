@@ -16,11 +16,14 @@ jobs:
         with:
           node-version: "18.x"
       - name: "Install Deps"
-        run: cd frontend && npm install
+        run: npm install
+        working-directory: frontend
       - name: "Test"
         run: npx vitest --coverage.enabled true
       - name: "Report Coverage"
         # Set if: always() to also generate the report if tests are failing
-        # Only works if you set `reportOnFailure: true` in your vite config as specified above
+        # Only works if you set `reportOnFailure: true` in your vite config, e.g.:
+        # coverage: { reportOnFailure: true }
+        # See: https://github.com/davelosert/vitest-coverage-report-action#reportonfailure
         if: always()
         uses: davelosert/vitest-coverage-report-action@v2
