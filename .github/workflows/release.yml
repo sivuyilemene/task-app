@@ -16,6 +16,7 @@ jobs:
         with:
           preset: "conventionalcommits"
           github-token: ${{ secrets.github_token }}
+          version-file: ./frontend/package.json
 
       - name: create release
         uses: actions/create-release@v1
